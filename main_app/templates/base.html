@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Wayfair</title>
     <!-- Materialize -->
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
+    /> -->
     <!-- Bootstrap -->
     <link
       rel="stylesheet"
@@ -32,6 +32,10 @@
           </ul>
           <ul class="right">
             <li><a href="/about">About</a></li>
+            <ul class="right">
+              <li><a href="{% url 'login' %}">Login</a></li>
+              <ul class="right">
+                <li><a href="{% url 'signup' %}">Signup</a></li>
           </ul>
         </div>
       </nav>
