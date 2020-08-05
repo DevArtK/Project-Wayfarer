@@ -15,13 +15,13 @@ def about(request):
 
 
 # ----- LOGIN Roue -----
-def login(request):
-    return render(request, "login.html")
+def user_login(request):
+    return render(request, "user/login.html")
 
 
 # ----- SIGNUP Route -----
-def signup(request):
-    return render(request, "signup.html")
+def user_signup(request):
+    return render(request, "user/signup.html")
 
 
 # -----  -----
