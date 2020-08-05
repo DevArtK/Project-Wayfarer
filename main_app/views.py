@@ -6,6 +6,17 @@ from .models import User, Post, City
 
 # from .forms import
 
+# TEMP CAT DATA
+class City: 
+     def __init__(self, name, location):
+       self.name = name
+       self.location = location
+
+City = [
+     City('Atlanta', 'GA'),
+     City('Norwalk', 'CT'),
+     City('Brooklyn', 'NY'),
+]
 
 # ----- HOME Route -----
 def home(request):
