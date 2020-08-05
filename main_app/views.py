@@ -1,6 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from .models import User, Post, City
 
-# from .models import
 # from .forms import
 
 
@@ -24,8 +27,15 @@ def user_signup(request):
     return render(request, "user/signup.html")
 
 
-# -----  -----
+# ----- User Profile -----
+def user_detail(request):
+    # user: User.objects.get(id=user_id)
+    # context - {"user": user}
+    return render(request, "user/detail.html", {})
 
 
-# -----  -----
+# ----- User Edit Profile, Posts -----
+# TODO ---- Auth -----
+def user_edit(request):
+    return render(request, "user/edit.html")
 
