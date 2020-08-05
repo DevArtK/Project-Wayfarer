@@ -1,0 +1,30 @@
+nav {
+  background-color: rebeccapurple;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.page-footer {
+  background-color: rebeccapurple;
+  padding-top: 0;
+  height: 40px;
+}
+
+main {
+  flex: 1 0 auto;
+  min-height: 90vh;
+}
+
+footer {
+  padding-top: 10px;
+  text-align: right;
+}
+
+.container {
+  margin-top: 5%;
+  text-align: center;
+}

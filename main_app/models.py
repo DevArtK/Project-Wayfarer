@@ -1,4 +1,5 @@
 from django.db import models
+<<<<<<< HEAD
 from django.contrib.auth.models import User
 # Create your models here.
 
@@ -12,4 +13,14 @@ class City(models.Model):
     location = models.CharField(max_length=50)
     # image = models.ImageField(upload_to="images/")#
     
+=======
+
+# # Create your models here.
+# class User(models.Model):
+#     username = models.CharField(max_length=50)
+#     password =
+#     email =
+#     first_name =
+#     last_name =
+>>>>>>> submaster
 
