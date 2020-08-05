@@ -29,5 +29,3 @@ def user_signup(request):
 
 # -----  -----
 
-
-# -----  -----
