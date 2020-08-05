@@ -20,7 +20,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@800&family=Inter&family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@800&family=Inter&family=Josefin+Sans:ital,wght@1,700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
   </head>
   <body>
@@ -32,10 +35,11 @@
           </ul>
           <ul class="right">
             {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">Log Out</a></li>
+            <li><a href="{% url 'user_details' %}">Your Profile</a></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'signup' %}">Signup</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Signup</a></li>
             {% endif %}
           </ul>
         </div>

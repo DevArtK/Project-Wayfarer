@@ -1,10 +1,22 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from .models import User, Post, City
 
-# from .models import
 # from .forms import
 
+# TEMP CAT DATA
+class City: 
+     def __init__(self, name, location):
+       self.name = name
+       self.location = location
+
+City = [
+     City('Atlanta', 'GA'),
+     City('Norwalk', 'CT'),
+     City('Brooklyn', 'NY'),
+]
 
 # ----- HOME Route -----
 def home(request):
@@ -14,6 +26,13 @@ def home(request):
 # ----- ABOUT Route -----
 def about(request):
     return render(request, "about.html")
+
+
+# ----- User profile Page -----
+# @login_required
+def user_profile(request):
+    return render(request, "user/detail.html")
+
 
 
 # ------ User Signup Route ------

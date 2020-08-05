@@ -1,60 +1,89 @@
 nav {
-    background-color: #161398;
-    color: #22c8dc;
-    font-family: 'Josefin Sans', sans-serif;
-  }
-  
-  body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    background-color: #96d4EA;
-    font-family: 'Inter', sans-serif;
+  background-color: #161398;
+  color: #22c8dc;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #96d4ea;
+  font-family: "Inter", sans-serif;
+}
+
+.page-footer {
+  background-color: #161398;
+  padding-top: 0;
+  height: 40px;
+}
+
+main {
+  flex: 1 0 auto;
+  min-height: 90vh;
+}
+
+footer {
+  padding-top: 10px;
+  text-align: right;
+}
+
+.container {
+  margin-top: 5%;
+  text-align: center;
+}
+/*----- Profile Detail Page -----*/
+.container-profile {
+  height: 100%;
+  align-content: center;
+}
+
+.image_outer_container {
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 50%;
+  position: relative;
+}
+
+.image_inner_container {
+  border-radius: 50%;
+  padding: 5px;
+  background: #833ab4;
+  background: -webkit-linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
+  background: linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
+}
+.image_inner_container img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 5px solid white;
+}
+
+.image_outer_container .green_icon {
+  background-color: #4cd137;
+  position: absolute;
+  right: 30px;
+  bottom: 10px;
+  height: 30px;
+  width: 30px;
+  border: 5px solid white;
+  border-radius: 50%;
+}
+/*----- End Profile Detail Page -----*/
+
+nav .brand-logo {
+  color: #22c8dc;
+  display: inline-block;
+  font-size: 2.1rem;
+  padding: 0;
+}
+
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+@media (min-width: 1350px) {
     max-width: 100%;
-  }
-  
-  .page-footer {
-    background-color: #161398;
-    padding-top: 0;
-    height: 40px;
-  }
-  
-  main {
-    flex: 1 0 auto;
-    min-height: 90vh;
-  }
-  
-  footer {
-    padding-top: 10px;
-    text-align: right;
-  }
-  
-  .container {
-    margin-top: 5%;
-    text-align: center;
-  }
-  
-  nav .brand-logo {
-      color: #22c8dc;
-      display: inline-block;
-      font-size: 2.1rem;
-      padding: 0;
-  }
-  
-  .carousel-item{
-      background-color: grey;
-      
-  }
-  
-  
-  .img-fluid {
-      max-width: 100%;
-      height: auto;
-  }
-  
-  
-  .carousel-item .img-fluid {
-      width:100%;
-      height:100%;
-    }
-     
+}
