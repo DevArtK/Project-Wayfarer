@@ -1,8 +1,13 @@
 from django.shortcuts import render, HttpResponse, redirect
+<<<<<<< HEAD
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import User, Post, City
+=======
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+>>>>>>> 5e8122f636fdee829a30fc4eb2b07e3957d39ed4
 
 # from .forms import
 
@@ -28,25 +33,22 @@ def about(request):
     return render(request, "about.html")
 
 
-# ----- LOGIN Roue -----
-def user_login(request):
-    return render(request, "user/login.html")
-
-
-# ----- SIGNUP Route -----
-def user_signup(request):
-    return render(request, "user/signup.html")
-
-
-# ----- User Profile -----
-def user_detail(request):
-    # user: User.objects.get(id=user_id)
-    # context - {"user": user}
-    return render(request, "user/detail.html", {})
-
-
-# ----- User Edit Profile, Posts -----
-# TODO ---- Auth -----
-def user_edit(request):
-    return render(request, "user/edit.html")
-
+# ------ User Signup Route ------
+def signup(request):
+  error = None
+  form = UserCreationForm()
+  context = {
+    'form': form,
+    'error': error,
+  }
+  if request.method == 'POST':
+    # Create an instance of Form
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('/')
+    else:
+      return render(request, 'registration/signup.html', {'form': form, 'error': form.errors})
+  else:
+    return render(request, 'registration/signup.html', context)
