@@ -1,15 +1,19 @@
 nav {
-  background-color: rebeccapurple;
+  background-color: #161398;
+  color: #22c8dc;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: #96d4EA;
+  font-family: 'Inter', sans-serif;
 }
 
 .page-footer {
-  background-color: rebeccapurple;
+  background-color: #161398;
   padding-top: 0;
   height: 40px;
 }
@@ -27,4 +31,12 @@ footer {
 .container {
   margin-top: 5%;
   text-align: center;
+}
+
+nav .brand-logo {
+    position: absolute;
+    color: #22c8dc;
+    display: inline-block;
+    font-size: 2.1rem;
+    padding: 0;
 }
