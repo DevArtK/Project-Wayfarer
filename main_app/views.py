@@ -16,7 +16,7 @@ def about(request):
     return render(request, "about.html")
 
 
-# User Signup Route
+# ------ User Signup Route ------
 def signup(request):
   error = None
   form = UserCreationForm()
@@ -30,7 +30,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('index')
+      return redirect('/')
     else:
       return render(request, 'registration/signup.html', {'form': form, 'error': form.errors})
   else:
