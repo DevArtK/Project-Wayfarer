@@ -1,6 +1,6 @@
 {% extends 'base.html' %}{% load static %} {% block content %}
-
-<form class="login100-form validate-form">
+{% csrf_token %}
+<form class="login100-form validate-form" method="POST">
   <span class="login100-form-title p-b-26">
     Welcome
   </span>

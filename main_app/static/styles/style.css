@@ -1,28 +1,19 @@
 nav {
-  background-color: rebeccapurple;
-  -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.83);
-  -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.83);
-  box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.83);}
+  background-color: #161398;
+  color: #22c8dc;
+  font-family: "Josefin Sans", sans-serif;
+}
 
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  text-align: center;
-}
-
-.position{
-margin-left: 215px;
-}
-
-.article {
-  margin: 10px;;
-  float: left;
-  margin-right: 100px;
+  background-color: #96d4ea;
+  font-family: "Inter", sans-serif;
 }
 
 .page-footer {
-  background-color: rebeccapurple;
+  background-color: #161398;
   padding-top: 0;
   height: 40px;
 }
@@ -40,4 +31,49 @@ footer {
 .container {
   margin-top: 5%;
   text-align: center;
+}
+/*----- Profile Detail Page -----*/
+.container-profile {
+  height: 100%;
+  align-content: center;
+}
+
+.image_outer_container {
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 50%;
+  position: relative;
+}
+
+.image_inner_container {
+  border-radius: 50%;
+  padding: 5px;
+  background: #833ab4;
+  background: -webkit-linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
+  background: linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);
+}
+.image_inner_container img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 5px solid white;
+}
+
+.image_outer_container .green_icon {
+  background-color: #4cd137;
+  position: absolute;
+  right: 30px;
+  bottom: 10px;
+  height: 30px;
+  width: 30px;
+  border: 5px solid white;
+  border-radius: 50%;
+}
+/*----- End Profile Detail Page -----*/
+
+nav .brand-logo {
+  color: #22c8dc;
+  display: inline-block;
+  font-size: 2.1rem;
+  padding: 0;
 }
