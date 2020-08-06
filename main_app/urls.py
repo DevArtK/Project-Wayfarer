@@ -7,4 +7,5 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     # Auth Routes
     path("accounts/signup", views.signup, name="signup"),
+    path("login/", views.login_user, name="login"),
 ]
