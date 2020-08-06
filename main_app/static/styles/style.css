@@ -1,8 +1,9 @@
 nav {
   background-color: #161398;
-  color: #22c8dc;
+  color: white;
   font-family: "Josefin Sans", sans-serif;
 }
+
 
 body {
   margin: 0;
@@ -29,7 +30,13 @@ header,
     background-size: cover;
 }
 
+.black-text{
+  color: black;
+}
 
+.Title{
+  font-family: 'Bitter', serif;
+}
 
 
 .page-footer {
