@@ -75,13 +75,7 @@ WSGI_APPLICATION = "Wayfarer_project.wsgi.application"
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-    "ENGINE": "django.db.backends.postgresql", 
-    "NAME": "wayfarerGA",
-    "USER": 'brend',
-    "PASSWORD": 'as', 
-    },
-
+    "default": {"ENGINE": "django.db.backends.postgresql", "NAME": "wayfarerGA", "USER": "brend", "PASSWORD": "as"},
 }
 
 
@@ -116,9 +110,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
 
-LOGIN_REDIRECT_URL = '/user/detail'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = "/user/detail"
+LOGOUT_REDIRECT_URL = "/"
 
