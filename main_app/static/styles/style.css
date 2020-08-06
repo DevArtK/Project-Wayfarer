@@ -1,8 +1,10 @@
 nav {
   background-color: #161398;
-  color: #22c8dc;
+  color: white;
   font-family: "Josefin Sans", sans-serif;
+  height: 100%;
 }
+
 
 body {
   margin: 0;
@@ -13,10 +15,9 @@ body {
   background-color: #96d4ea;
   font-family: "Inter", sans-serif;
 }
-/* Bootstracp */
-html,
-body,
-header,
+/* Bootstrap */
+html
+body
 #in {
     height: 100%;
 }
@@ -29,7 +30,13 @@ header,
     background-size: cover;
 }
 
+.black-text{
+  color: black;
+}
 
+.Title{
+  font-family: 'Bitter', serif;
+}
 
 
 .page-footer {
@@ -41,6 +48,10 @@ header,
 main {
   flex: 1 0 auto;
   min-height: 90vh;
+}
+
+main.container {
+  width: 100%;
 }
 
 footer {
@@ -102,8 +113,4 @@ nav .brand-logo {
     position: relative;
     width: 100%;
     overflow: hidden;
-}
-
-@media (min-width: 1350px) {
-    max-width: 100%;
 }
