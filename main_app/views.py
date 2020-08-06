@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import User_Profile, City, Post
+from django.contrib.auth.forms import ProfileForm, AuthenticationForm
+from django.views.generic import UpdateView
+from .models import UserProfile, City, Post
 from .forms import RegistrationForm
 
 
@@ -21,7 +22,7 @@ City = [
 
 
 class ProfilView(UpdateView):
-    model = User_Profile
+    model = UserProfile
     fields = ["first_name", "last_name", "picture", "location"]
     template_name = 'registration/signup'
 
@@ -46,7 +47,7 @@ def about(request):
 # ------ User Signup Route ------
 def signup(request):
     error = None
-    form = UserCreationForm()
+    form = ProfileForm()
     context = {
         "form": form,
         "error": error,
@@ -54,7 +55,7 @@ def signup(request):
     if request.method == "POST":
         # Create an instance of Form
         profile_form = ProfileForm(request.POST)  # !
-        form = UserCreationForm(request.POST)
+        form = ProfileForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)

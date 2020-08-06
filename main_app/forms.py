@@ -1,18 +1,18 @@
 from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from .models import User_Profile
+from .models import UserProfile
 
 
 # - PasswordChangeForm: Allows users to change their password by entering the old password and a new password.
 # - AdminPasswordChangeForm: Allows users to change their password from the Django admin.
 # - PasswordResetForm: Assumes users to reset their passwords using a reset link sent to the email address.
 
-class RegisterForm(forms.ModelForm):
+class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label="Password")
 
     class Meta:
-        model = User_Profile
+        model = UserProfile
         fields = ("email", "username", "password",
                   "first_name", "last_name", "picture", "location")
 
@@ -39,16 +39,20 @@ class RegisterForm(forms.ModelForm):
         return user
 
 
-class UserCreationForm(forms.ModelForm):
+class ProfileForm(forms.ModelForm):
     password1 = forms.CharField(
         label="Password", widget=forms.PasswordInput)
     password2 = forms.CharField(
         label="Password Confirmation", widget=forms.PasswordInput)
 
     class Meta:
-        model = User_Profile
+        model = UserProfile
         fields = ('email', 'first_name', 'last_name', 'location',
-                           'picture', 'is_staff', 'is_superuser', 'is_active')
+                           'picture')
+
+
+# ('email', 'first_name', 'last_name', 'location',
+#  'picture', 'is_staff', 'is_superuser', 'is_active')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -69,9 +73,13 @@ class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
-        model = User_Profile
+        model = UserProfile
         fields = ('email', 'first_name', 'last_name', 'location',
-                  'picture', 'is_staff', 'is_superuser')
+                  'picture')
+
+
+# ('email', 'first_name', 'last_name', 'location',
+#  'picture', 'is_staff', 'is_superuser')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.

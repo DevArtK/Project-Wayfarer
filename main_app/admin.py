@@ -1,13 +1,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import City, User_Profile, Post
-from .forms import UserCreationForm, UserChangeForm
+from .models import City, UserProfile, Post
+from .forms import ProfileForm, UserChangeForm
 from django.contrib.auth.models import User
 
 
-class AccountAdmin(UserAdmin):
-    form = UserChangeForm
-    add_form = UserCreationForm
+class AccountAdmin(BaseUserAdmin):
+    form = ProfileForm
+    add_form = ProfileForm
 
     list_display = ('email', 'username', 'date_joined',
                     'last_login', 'is_admin', 'is_staff')
@@ -37,4 +37,4 @@ class AccountAdmin(UserAdmin):
 
 admin.site.register(City)
 admin.site.register(Post)
-admin.site.register(User_Profile, AccountAdmin)
+admin.site.register(UserProfile)

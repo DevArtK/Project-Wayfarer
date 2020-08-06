@@ -68,7 +68,7 @@ TEMPLATES = [
         },
     },
 ]
-AUTH_USER_MODEL = "main_app.User_Profile"
+
 
 WSGI_APPLICATION = "Wayfarer_project.wsgi.application"
 
@@ -76,7 +76,7 @@ WSGI_APPLICATION = "Wayfarer_project.wsgi.application"
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {"ENGINE": "django.db.backends.postgresql", "NAME": "wayfarer", },
+    "default": {"ENGINE": "django.db.backends.postgresql", "NAME": "wayfarerGAA", },
 }
 
 
