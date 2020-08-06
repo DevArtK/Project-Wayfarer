@@ -12,7 +12,7 @@ from django.db.models.signals import post_save
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    User = models.OneToOneField(User, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
     # Required
     username = models.CharField(unique=True, max_length=50)
@@ -31,7 +31,7 @@ class UserProfile(models.Model):
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
-            user.objects.create(user=instance)
+            User.objects.create(user=instance).save()
 
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
@@ -40,11 +40,6 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-
-class Profile(models.Model):
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE
-    )
 
 # User Manager Defines what happens when a regular, and super user is created
 

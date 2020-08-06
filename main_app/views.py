@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import ProfileForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import UpdateView
 from .models import UserProfile, City, Post
 from .forms import RegistrationForm, ProfileForm
@@ -22,7 +22,7 @@ City = [
 
 
 class ProfilView(UpdateView):
-    model = UserProfile
+    model = ProfileForm
     fields = ["first_name", "last_name", "picture", "location"]
     template_name = 'registration/signup'
 
