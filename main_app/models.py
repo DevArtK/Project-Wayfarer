@@ -3,6 +3,8 @@ from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
 from django.dispatch import receiver
+from django.db.models.signals import post_save
+
 
 # # Create your models here.
 
@@ -32,12 +34,12 @@ class custom_user(models.Model):
     def __str__(self):
         return f"{self.email}, {self.username}, {self.first_name}"
 
-    @reciever(post_save, sender=User)
+    @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created):
         if created:
             Profile.objects.create(user=instance)
 
-    @reciever(post_save, sender=User)
+    @receiver(post_save, sender=User)
     def save_user_profile(sender, instance):
         instance.profile.save()
 
