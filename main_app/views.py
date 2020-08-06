@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import ProfileForm, AuthenticationForm
 from django.views.generic import UpdateView
 from .models import UserProfile, City, Post
-from .forms import RegistrationForm
+from .forms import RegistrationForm, ProfileForm
 
 
 class City:
@@ -67,13 +67,4 @@ def signup(request):
                 {"form": form, "error": form.errors},
             )
     else:
-<<<<<<< HEAD
         return render(request, "registration/signup.html", context)
-
-
-# ----- User Login Route (has to be something other than login)-----
-def login_user(request):
-    return render(request, "user/login.html")
-=======
-        return render(request, "registration/signup.html", context)
->>>>>>> 1fc2f17e8df9c8a45e9ba420973668c2afbdb9db

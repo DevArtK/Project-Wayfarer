@@ -4,8 +4,9 @@ from datetime import date
 from django.utils import timezone
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, User, PermissionsMixin
 from django.conf import settings
-from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models.signals import post_save
+
 
 # Create your models here.
 
@@ -30,11 +31,11 @@ class UserProfile(models.Model):
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
-            ProfileForm.objects.create(user=instance)
+            user.objects.create(user=instance)
 
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
-        instance.ProfileForm.save()
+        instance.user.save()
 
     def __str__(self):
         return self.user.username
@@ -56,7 +57,30 @@ class City(models.Model):
     # image = models.ImageField(upload_to="images/")#
 
 
-# Post Model
+# Django model username, email, password, first_name, and last_name
+# User Model
+class custom_user(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    locaton = models.CharField(max_length=40)
+    email = models.EmailField(("email address"), unique=True)
+    first_name = models.CharField(("first name"), max_length=30, blank=True)
+    last_name = models.CharField(("last name"), max_length=30, blank=True)
+    date_joined = models.DateTimeField(("date joined"), auto_now_add=True)
+    is_active = models.BooleanField(("active"), default=True)
+    date_created = models.DateTimeField()
+    # photos = models.ImageField(upload_to="images/user_photos")
+
+    def __str__(self):
+        return f"{self.email}, {self.username}, {self.first_name}"
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
 
 class Post(models.Model):
