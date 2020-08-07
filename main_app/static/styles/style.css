@@ -2,6 +2,7 @@ nav {
   background-color: #161398;
   color: white;
   font-family: "Josefin Sans", sans-serif;
+  height: 100%;
 }
 
 body {
@@ -13,10 +14,9 @@ body {
   background-color: #96d4ea;
   font-family: "Inter", sans-serif;
 }
-/* Bootstracp */
-html,
-body,
-header,
+/* Bootstrap */
+html
+body
 #in {
   height: 100%;
 }
@@ -47,6 +47,10 @@ header,
 main {
   flex: 1 0 auto;
   min-height: 90vh;
+}
+
+main.container {
+  width: 100%;
 }
 
 footer {
@@ -107,4 +111,10 @@ nav .brand-logo {
   display: inline-block;
   font-size: 2.1rem;
   padding: 0;
+}
+
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
