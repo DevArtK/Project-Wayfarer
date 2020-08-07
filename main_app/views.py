@@ -1,9 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import ProfileForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.generic import UpdateView
 from .models import UserProfile, City, Post
-from .forms import RegistrationForm
+from .forms import RegistrationForm, ProfileForm
+from django.contrib.auth.models import User
 
 
 class City:
@@ -22,7 +23,7 @@ City = [
 
 
 class ProfilView(UpdateView):
-    model = UserProfile
+    model = ProfileForm
     fields = ["first_name", "last_name", "picture", "location"]
     template_name = 'registration/signup'
 
@@ -47,15 +48,15 @@ def about(request):
 # ------ User Signup Route ------
 def signup(request):
     error = None
-    form = ProfileForm()
+    form = RegistrationForm()
     context = {
         "form": form,
         "error": error,
     }
     if request.method == "POST":
         # Create an instance of Form
-        profile_form = ProfileForm(request.POST)  # !
-        form = ProfileForm(request.POST)
+        profile_form = RegistrationForm(request.POST)  # !
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -67,13 +68,14 @@ def signup(request):
                 {"form": form, "error": form.errors},
             )
     else:
-<<<<<<< HEAD
         return render(request, "registration/signup.html", context)
 
 
-# ----- User Login Route (has to be something other than login)-----
-def login_user(request):
-    return render(request, "user/login.html")
-=======
-        return render(request, "registration/signup.html", context)
->>>>>>> 1fc2f17e8df9c8a45e9ba420973668c2afbdb9db
+# User Profile Route
+def user_detail(request, user_id):
+    user = User.objects.get(id=user_id)
+    context = {
+        'user': User,
+
+    }
+    return render(request, 'user/detail.html', context)

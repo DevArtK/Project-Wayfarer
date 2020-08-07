@@ -4,7 +4,6 @@ nav {
   font-family: "Josefin Sans", sans-serif;
 }
 
-
 body {
   margin: 0;
   padding: 0;
@@ -19,25 +18,25 @@ html,
 body,
 header,
 #in {
-    height: 100%;
+  height: 100%;
 }
 
 #in {
-  background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20%283%29.jpg")no-repeat center center fixed;
+  background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20%283%29.jpg")
+    no-repeat center center fixed;
   -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
-.black-text{
+.black-text {
   color: black;
 }
 
-.Title{
-  font-family: 'Bitter', serif;
+.Title {
+  font-family: "Bitter", serif;
 }
-
 
 .page-footer {
   background-color: #161398;
@@ -48,6 +47,7 @@ header,
 main {
   flex: 1 0 auto;
   min-height: 90vh;
+  max-width: 100vw;
 }
 
 footer {
@@ -56,12 +56,17 @@ footer {
 }
 
 .container {
+  align-content: center;
   margin-top: 5%;
+  max-width: 40vw;
+  min-width: 100px;
   text-align: center;
 }
 /*----- Profile Detail Page -----*/
-.container-profile {
-  height: 100%;
+
+#profile-box {
+  display: inherit;
+  max-width: 100vw;
   align-content: center;
 }
 
