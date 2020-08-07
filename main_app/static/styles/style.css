@@ -109,6 +109,9 @@ nav .brand-logo {
   padding: 0;
 }
 #wayfarer {
-  width: 10vw;
-  height: 5vw;
+  position: relative;
+  left: -10px;
+  top: -15px;
+  width: 150px;
+  height: 100px;
 }
