@@ -60,7 +60,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("/")
+            return redirect("/user/1")
         else:
             return render(
                 request,
@@ -74,7 +74,9 @@ def signup(request):
 # User Profile Route
 def user_detail(request, user_id):
     user = User.objects.get(id=user_id)
+    form = ProfileForm()
     context = {
+        'form': form,
         'user': User,
 
     }
