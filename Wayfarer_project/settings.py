@@ -79,7 +79,6 @@ DATABASES = {
     "default": {"ENGINE": "django.db.backends.postgresql", "NAME": "wayfarerGA", "USER": "brend", "PASSWORD": "as"},
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -113,6 +112,5 @@ USE_TZ = True
 STATIC_URL = "/static/"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-LOGIN_REDIRECT_URL = "/user/detail"
+LOGIN_REDIRECT_URL = "/user/1"
 LOGOUT_REDIRECT_URL = "/"
-

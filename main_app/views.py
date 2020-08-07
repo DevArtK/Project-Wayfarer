@@ -7,7 +7,6 @@ from .forms import RegistrationForm, ProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-
 class City:
     def __init__(self, name, location):
         self.name = name
@@ -45,22 +44,29 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
+
+# ----- User profile Page -----
+# @login_required
+def user_profile(request):
+    return render(request, "user/detail.html")
+
+
 # ------ User Signup Route ------
 def signup(request):
-    error = None
-    form = RegistrationForm()
+    form = ProfileForm()
     context = {
         "form": form,
-        "error": error,
     }
     if request.method == "POST":
         # Create an instance of Form
-        profile_form = RegistrationForm(request.POST)  # !
-        form = RegistrationForm(request.POST)
+        form = ProfileForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.user = request.user
+            user.set_password(user.password)
+            user.save()
             login(request, user)
-            return redirect("/")
+            return redirect("/user/1")
         else:
             return render(
                 request,
@@ -75,7 +81,9 @@ def signup(request):
 @login_required
 def user_detail(request, user_id):
     user = User.objects.get(id=user_id)
+    form = ProfileForm()
     context = {
+        'form': form,
         'user': User,
 
     }
@@ -103,3 +111,8 @@ def post_detail(request, post_id):
     return render(request, 'post/detail.html', context)
 
 
+
+
+# Post Index Route
+def post_index(request):
+    return render(request, 'post/index.html')
