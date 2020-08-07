@@ -51,6 +51,10 @@ def user_profile(request):
     return render(request, "user/detail.html")
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 976650213a2f53a3f2460fa6de4215992013440d
 # ------ User Signup Route ------
 def signup(request):
     form = ProfileForm()
