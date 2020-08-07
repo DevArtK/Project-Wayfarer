@@ -13,5 +13,7 @@ urlpatterns = [
     path("accounts/signup", views.signup, name="signup"),
     # User Routes
     path('user/<int:user_id>/', views.user_detail, name='detail'),
-    path('post/', views.post_index, name='post')
+    path('post/', views.post_index, name='post'),
+    # City Routes
+    path('city/')
 ]

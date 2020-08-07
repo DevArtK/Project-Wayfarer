@@ -27,6 +27,14 @@
       <h4>Location</h4>
       <hr />
       <em>Date Joined</em>
+
+     
+      <h1>Edit Form</h1>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn" type="submit">Save</button>
+      </form>
     </div>
   </div>
 </body>
