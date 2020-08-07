@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %}
+
+<form action="POST">
+  <h1>Location</h1>
+  <p>{{ city_form.as_p }}</p>
+  <button class="btn" type="submit">Save</button>
+</form>
+{% endblock%}
