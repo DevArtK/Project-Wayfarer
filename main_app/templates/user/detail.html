@@ -15,10 +15,12 @@
     <h2>{{user.username}}</h2>
     <div class="card">
       <h4>Post</h4>
-      <li class="list-group-item">Post 1</li>
-      <li class="list-group-item">Post 2</li>
-      <li class="list-group-item">Post 3</li>
-      <li class="list-group-item">Post 4</li>
+      {%for post in user.posts%}
+        <a href="{% url 'post_detail' post.id %}">
+          <li class="list-group-item">{{ post.title }}</li>
+        </a>
+      {% endfor %}
+
     </div>
     <div class="card">
       <h4>Location</h4>
