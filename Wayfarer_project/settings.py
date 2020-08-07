@@ -76,9 +76,8 @@ WSGI_APPLICATION = "Wayfarer_project.wsgi.application"
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {"ENGINE": "django.db.backends.postgresql", "NAME": "wayfarerGAA", },
+    "default": {"ENGINE": "django.db.backends.postgresql", "NAME": "wayfarerGA", "USER": "brend", "PASSWORD": "as"},
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
