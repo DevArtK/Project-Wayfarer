@@ -49,33 +49,34 @@ class UserProfile(models.Model):
 class City(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # image = models.ImageField(upload_to="images/")#
 
 
 # Django model username, email, password, first_name, and last_name
 # User Model
-class custom_user(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    locaton = models.CharField(max_length=40)
-    email = models.EmailField(("email address"), unique=True)
-    first_name = models.CharField(("first name"), max_length=30, blank=True)
-    last_name = models.CharField(("last name"), max_length=30, blank=True)
-    date_joined = models.DateTimeField(("date joined"), auto_now_add=True)
-    is_active = models.BooleanField(("active"), default=True)
-    date_created = models.DateTimeField()
-    # photos = models.ImageField(upload_to="images/user_photos")
+# class custom_user(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     locaton = models.CharField(max_length=40)
+#     email = models.EmailField(("email address"), unique=True)
+#     first_name = models.CharField(("first name"), max_length=30, blank=True)
+#     last_name = models.CharField(("last name"), max_length=30, blank=True)
+#     date_joined = models.DateTimeField(("date joined"), auto_now_add=True)
+#     is_active = models.BooleanField(("active"), default=True)
+#     date_created = models.DateTimeField()
+#     # photos = models.ImageField(upload_to="images/user_photos")
 
-    def __str__(self):
-        return f"{self.email}, {self.username}, {self.first_name}"
+#     def __str__(self):
+#         return f"{self.email}, {self.username}, {self.first_name}"
 
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
+#     @receiver(post_save, sender=User)
+#     def create_user_profile(sender, instance, created, **kwargs):
+#         if created:
+#             Profile.objects.create(user=instance)
 
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
+#     @receiver(post_save, sender=User)
+#     def save_user_profile(sender, instance, **kwargs):
+#         instance.profile.save()
 
 
 class Post(models.Model):
