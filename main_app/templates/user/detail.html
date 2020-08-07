@@ -1,34 +1,36 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-
-
-  <div class="container-profile">
-    <div class="d-flex justify-content-center h-100">
-      <div class="image_outer_container">
-        <!-- <div class="green_icon"></div> -->
-        <div class="image_inner_container">
-          <img
-            src="https://i.pinimg.com/originals/43/96/61/439661dcc0d410d476d6d421b1812540.jpg"
-          />
-        </div>
+<main>
+  <div class="d-flex justify-content-center h-100">
+    <div class="image_outer_container">
+      <!-- <div class="green_icon"></div> -->
+      <div class="image_inner_container">
+        <img src="../../static/images/stock_profile_img.jpg" />
       </div>
     </div>
-    <div>
-      <h3>Post</h3>
-      <section>
-      <h4>Great Wall of China</h4>
-      </section>
-      <section>
-        <h4>LA Casinos</h4>
-    </section>
-    <section>
-      <h4>Dubai or Die</h4>
-    </section>
-    </div>
-    <h2>Name</h2>
-    <hr />
-    <h4>Location</h4>
-    <hr />
-    <em>Date Joined</em>
   </div>
 
+  <div class="container">
+    <h2>Name</h2>
+
+    <h2>{{user.username}}</h2>
+    <div class="card">
+      <h4>Post</h4>
+      <li class="list-group-item">Post 1</li>
+      <li class="list-group-item">Post 2</li>
+      <li class="list-group-item">Post 3</li>
+      <li class="list-group-item">Post 4</li>
+    </div>
+    <div class="card">
+      <h4>Location</h4>
+      <ul class="list-group list-group flush">
+        <li class="list-group-item">Dubai or Die</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- deleted h4 double tag user.location -->
+  <div><em>Date Joined: </em></div>
+
+  <button type="button" class="btn btn-warning">Edit Profile</button>
+</main>
 {% endblock %}
