@@ -2,19 +2,19 @@ from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from .models import UserProfile
-
+from django.contrib.auth.models import User
 
 # - PasswordChangeForm: Allows users to change their password by entering the old password and a new password.
 # - AdminPasswordChangeForm: Allows users to change their password from the Django admin.
 # - PasswordResetForm: Assumes users to reset their passwords using a reset link sent to the email address.
+
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label="Password")
 
     class Meta:
         model = UserProfile
-        fields = ("email", "username", "password",
-                  "first_name", "last_name", "picture", "location")
+        fields = ("email", "username", "password")
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -46,13 +46,8 @@ class ProfileForm(forms.ModelForm):
         label="Password Confirmation", widget=forms.PasswordInput)
 
     class Meta:
-        model = UserProfile
-        fields = ('email', 'first_name', 'last_name', 'location',
-                           'picture')
-
-
-# ('email', 'first_name', 'last_name', 'location',
-#  'picture', 'is_staff', 'is_superuser', 'is_active')
+        model = User
+        fields = ('email', 'username')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -63,9 +58,10 @@ class ProfileForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
+        user.set_password(user.password)
         if commit:
-            user.save()
+            UserProfile.save(User)
+            user.save(User)
         return user
 
 

@@ -51,21 +51,20 @@ def user_profile(request):
     return render(request, "user/detail.html")
 
 
-
 # ------ User Signup Route ------
 def signup(request):
-    error = None
-    form = RegistrationForm()
+    form = ProfileForm()
     context = {
         "form": form,
-        "error": error,
     }
     if request.method == "POST":
         # Create an instance of Form
-        profile_form = RegistrationForm(request.POST)  # !
-        form = RegistrationForm(request.POST)
+        form = ProfileForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.user = request.user
+            user.set_password(user.password)
+            user.save()
             login(request, user)
             return redirect("/user/1")
         else:
@@ -88,3 +87,9 @@ def user_detail(request, user_id):
 
     }
     return render(request, 'user/detail.html', context)
+
+# Post Index Route
+
+
+def post_index(request):
+    return render(request, 'post/index.html')
