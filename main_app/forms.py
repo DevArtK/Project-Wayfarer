@@ -58,6 +58,7 @@ class ProfileForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
+        
         user.set_password(user.password)
         if commit:
             UserProfile.save(User)
