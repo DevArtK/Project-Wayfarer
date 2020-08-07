@@ -47,7 +47,6 @@ header,
 main {
   flex: 1 0 auto;
   min-height: 90vh;
-  max-width: 100vw;
 }
 
 footer {
@@ -58,7 +57,7 @@ footer {
 .container {
   align-content: center;
   margin-top: 5%;
-  max-width: 40vw;
+  max-width: 60vw;
   min-width: 100px;
   text-align: center;
 }
