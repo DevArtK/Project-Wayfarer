@@ -33,8 +33,8 @@ class RegistrationForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
-        User = super().save(commit=False)
-        User.set_password(self.cleaned_data["password"])
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])
         if commit:
             User.save()
         return User
