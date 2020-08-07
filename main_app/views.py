@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.generic import UpdateView
 from .models import UserProfile, City, Post
-from .forms import RegistrationForm, ProfileForm
+from .forms import RegistrationForm, ProfileForm, CityForm
 from django.contrib.auth.models import User
 
 
@@ -29,14 +29,19 @@ def home(request):
 
 # ----- ABOUT Route -----
 def about(request):
-    return render(request, "about.html")
+    city_form = CityForm()
+    context = {
+
+        'city_form': CityForm,
+        'user': User
+    }
+    return render(request, "about.html", context)
 
 
 # ----- User profile Page -----
 # @login_required
 def user_profile(request):
     return render(request, "user/detail.html")
-
 
 
 # ------ User Signup Route ------

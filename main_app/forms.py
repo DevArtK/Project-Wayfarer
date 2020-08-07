@@ -77,4 +77,4 @@ class UserChangeForm(forms.ModelForm):
 class CityForm(forms.ModelForm):
     class Meta:
         model = City
-        fields = ['Location']
+        fields = ['city']
