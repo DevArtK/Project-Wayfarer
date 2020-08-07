@@ -6,38 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Wayfair</title>
-    <!-- Materialize -->
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    /> -->
     <!-- Bootstrap -->
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
-      integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
     />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.min.js"
-    />
-    <!-- Materialize CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
+
     <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Bitter:wght@800&family=Inter&family=Josefin+Sans:ital,wght@1,700&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
   </head>
   <body>
@@ -68,38 +71,10 @@
           </ul>
         </div>
       </nav>
-
-      <!--Mask-->
-      <div id="in" class="view">
-        <div class="mask rgba-black-strong">
-          <div
-            class="container-fluid d-flex align-items-center justify-content-center h-100"
-          >
-            <div class="row d-flex justify-content-center text-center">
-              <div class="col-md-10">
-                <!-- Heading -->
-                <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">
-                  Travel
-                </h2>
-
-                <!-- Divider -->
-                <hr class="hr-light" />
-
-                <!-- Description -->
-                <h4 class="white-text my-4">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Deleniti consequuntur.
-                </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/.Mask-->
     </header>
-    <main class="container">
-      {% block content %} {% endblock %}
-    </main>
+
+    {% block content %} {% endblock %}
+
     <footer class="page-footer">
       <div class="right">All Rights Reserved, &copy; 2020 Wayfair &nbsp;</div>
     </footer>
