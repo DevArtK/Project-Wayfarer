@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block content %}
+
+  <div class="container">
+ 
+
+    <h2>Citys</h2>
+    
+    <div class="card">
+      <h4>Post</h4>
+      {%for city in citys%}
+      <a href="{% url 'city_detail' city.id %}">
+        <img src="{city.cityphoto}" alt="">
+        <li class="list-group-item">{{ city.cityname }}</li>
+      </a>
+      {% endfor %}
+    </div>
+
+
+{% endblock %}

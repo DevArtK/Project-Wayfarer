@@ -3,24 +3,12 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.generic import UpdateView
 from .models import UserProfile, City, Post
-from .forms import RegistrationForm, ProfileForm
+from .forms import RegistrationForm, ProfileForm, CityForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-class City:
-    def __init__(self, name, location):
-        self.name = name
-        self.location = location
-
-
-City = [
-    City("Atlanta", "GA"),
-    City("Norwalk", "CT"),
-    City("Brooklyn", "NY"),
-]
 
 # ----- User Reg + User Profile
-
 
 class ProfilView(UpdateView):
     model = ProfileForm
@@ -42,7 +30,13 @@ def home(request):
 
 # ----- ABOUT Route -----
 def about(request):
-    return render(request, "about.html")
+    city_form = CityForm()
+    context = {
+
+        'city_form': CityForm,
+        'user': User
+    }
+    return render(request, "about.html", context)
 
 
 # ----- User profile Page -----
@@ -116,3 +110,59 @@ def post_detail(request, post_id):
 # Post Index Route
 def post_index(request):
     return render(request, 'post/index.html')
+
+
+# Post edit route
+
+@login_required
+def edit_post(request, post_id):
+  post = Post.objects.get(id=post_id)
+  if request.method == 'POST':
+    form = Form(request.POST, instance=post)
+    if form.is_valid():
+      post = form.save()
+      return redirect('detail', post.id)
+  else:
+    form = PostForm(instance=post)
+    return render(request, 'post/edit.html', {'form': form})
+
+@login_required
+def post_add(request):
+  if request.method == 'POST':
+    user = request.user.user_id
+    title = request.POST['title']
+    body = request.POST['body']
+    city = request.POST['city_id']
+
+    form = PostForm(request.POST)
+    new_post = form.save(commit=False)
+    # Associate User and Cat
+    new_post.user = request.user
+    # Save new Cat in DB
+    new_post.save()
+
+    return redirect('detail', new_post.id)
+  else:
+    form = PostForm()
+    return render(request, 'post/new.html', {'form': form})
+
+@login_required
+def post_delete(request, post_id):
+
+  Post.objects.get(id=post_id).delete()
+  return redirect('index')
+
+
+# _____City Routes _______
+
+ def city_index(request):
+     return render(request, 'city/index.html')
+
+def city_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    context = {
+    'name': name,
+    'image': image,
+    'posts': posts,
+    }
+    return render(request, 'city/detail.html', context)

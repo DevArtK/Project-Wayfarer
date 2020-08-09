@@ -1,0 +1,28 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block content %}
+
+  <div class="container">
+ 
+
+    <h2>{{city.name}}</h2>
+    <img src="{city.image" alt="">
+    <div class="card">
+      <h4>Post</h4>
+      {%for post in city.posts%}
+      <a href="{% url 'post_detail' post.id %}">
+        <li class="list-group-item">{{ post.title }}</li>
+        <p>{{post.body}}</p>
+      </a>
+      {% endfor %}
+    </div>
+
+    <a href="{url 'post_new'}">
+      <Button type="button">Add a new Post</Button>
+    </a>
+
+
+
+{% endblock %}
