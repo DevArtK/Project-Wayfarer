@@ -79,8 +79,8 @@ def signup(request):
 
 # User Profile Route
 @login_required
-def user_detail(request, user_id):
-    user = User.objects.get(id=user_id)
+def user_detail(request):
+    user = request.user
     form = ProfileForm()
     context = {
         'form': form,

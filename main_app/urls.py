@@ -9,8 +9,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path("accounts/signup", views.signup, name="signup"),
     # User Routes
-    path('user/<int:user_id>/', views.user_detail, name='user_detail'),
-    path('users/<int:user_id>/edit/', views.user_edit, name='user_edit'),
+    path('user/', views.user_detail, name='user_detail'),
+    path('users/edit/', views.user_edit, name='user_edit'),
 
 
     #Post Routes

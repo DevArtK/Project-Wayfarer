@@ -4,18 +4,13 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from .models import UserProfile
 from django.contrib.auth.models import User
 
-# - PasswordChangeForm: Allows users to change their password by entering the old password and a new password.
-# - AdminPasswordChangeForm: Allows users to change their password from the Django admin.
-# - PasswordResetForm: Assumes users to reset their passwords using a reset link sent to the email address.
-
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label="Password")
 
     class Meta:
         model = UserProfile
-        fields = ("email", "username", "password",
-                  "first_name", "last_name", "picture", "location")
+        fields = ("email", "username", "password")
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -59,6 +54,7 @@ class ProfileForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
+
         user.set_password(user.password)
         if commit:
             UserProfile.save(User)
@@ -75,7 +71,4 @@ class UserChangeForm(forms.ModelForm):
                   'picture')
 
     def clean_password(self):
-        # Regardless of what the user provides, return the initial value.
-        # This is done here, rather than on the field, because the
-        # field does not have access to the initial value
         return self.initial["password"]
