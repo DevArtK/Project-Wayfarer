@@ -18,7 +18,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@800&family=Inter&family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
     ​
-    <link rel="stylesheet" href="{% static 'styles/style.css' %}" >
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
   </head>
 
   <body>
@@ -26,10 +26,9 @@
       <nav class="container-fluid">
             <div class="d-flex">
               <h1><a href="/" class="mr-auto p-2" id="color">&nbsp;&nbsp;Wayfair</a></h1>
-              
               <ul class="ml-auto">
                 {% if user.is_authenticated %}
-                <a href="{% url 'user_details' %}">Your Profile</a>
+                <a href="{% url 'user_detail' %}">Your Profile</a>
                 <a href="{% url 'logout' %}">Log Out</a>
                 {% else %}
                 <a href="{% url 'login' %}">Login</a>
@@ -37,12 +36,13 @@
                 {% endif %}
               </ul>
             </div>
-
       </nav>
     </header>
-    
-    ​ ​ {% block content %} 
-      {% endblock %} ​ ​
+
+
+      {% block content %} 
+      
+      {% endblock %}
 
     <footer class="page-footer">
       <div class="right">All Rights Reserved, &copy; 2020 Wayfair &nbsp;</div>
