@@ -60,7 +60,7 @@ def signup(request):
             user.set_password(user.password)
             user.save()
             login(request, user)
-            return redirect("/user/1")
+            return redirect("user/detail")
         else:
             return render(
                 request,
@@ -113,50 +113,50 @@ def post_index(request):
 
 
 # Post edit route
-
 @login_required
-def edit_post(request, post_id):
-  post = Post.objects.get(id=post_id)
-  if request.method == 'POST':
-    form = Form(request.POST, instance=post)
-    if form.is_valid():
-      post = form.save()
-      return redirect('detail', post.id)
-  else:
-    form = PostForm(instance=post)
-    return render(request, 'post/edit.html', {'form': form})
+def post_edit(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        form = Form(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save()
+        return redirect('detail', post.id)
+    else:
+        form = PostForm(instance=post)
+        return render(request, 'post/edit.html', {'form': form})
+
 
 @login_required
 def post_add(request):
-  if request.method == 'POST':
-    user = request.user.user_id
-    title = request.POST['title']
-    body = request.POST['body']
-    city = request.POST['city_id']
+    if request.method == 'POST':
+        user = request.user.user_id
+        title = request.POST['title']
+        body = request.POST['body']
+        city = request.POST['city_id']
 
-    form = PostForm(request.POST)
-    new_post = form.save(commit=False)
-    # Associate User and Cat
-    new_post.user = request.user
-    # Save new Cat in DB
-    new_post.save()
+        form = PostForm(request.POST)
+        new_post = form.save(commit=False)
+        # Associate User and Cat
+        new_post.user = request.user
+        # Save new Cat in DB
+        new_post.save()
 
-    return redirect('detail', new_post.id)
-  else:
-    form = PostForm()
-    return render(request, 'post/new.html', {'form': form})
+        return redirect('detail', new_post.id)
+    else:
+        form = PostForm()
+        return render(request, 'post/new.html', {'form': form})
 
 @login_required
 def post_delete(request, post_id):
 
-  Post.objects.get(id=post_id).delete()
-  return redirect('index')
+    Post.objects.get(id=post_id).delete()
+    return redirect('index')
 
 
 # _____City Routes _______
 
- def city_index(request):
-     return render(request, 'city/index.html')
+def city_index(request):
+    return render(request, 'city/index.html')
 
 def city_detail(request, city_id):
     city = City.objects.get(id=city_id)
