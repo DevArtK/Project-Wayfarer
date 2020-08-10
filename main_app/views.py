@@ -105,15 +105,7 @@ def post_detail(request, post_id):
     return render(request, 'post/detail.html', context)
 
 
-
-
-# Post Index Route
-def post_index(request):
-    return render(request, 'post/index.html')
-
-
 # Post edit route
-
 @login_required
 def edit_post(request, post_id):
   post = Post.objects.get(id=post_id)
