@@ -6,7 +6,6 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, User, 
 from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-
 from django.contrib.auth.base_user import BaseUserManager
 # class UserManager(BaseUserManager):
 
@@ -66,19 +65,18 @@ class UserProfile(models.Model):
     picture = models.ImageField(blank=True, null=True)
 
     @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
+    def create_user_profile(self, sender, instance, created, **kwargs):
         if created:
             User.objects.create(user=instance).save()
 
     @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
+    def save_user_profile(self, sender, instance, **kwargs):
         instance.User.save()
 
     def __str__(self):
         return self.User.username
 
 
-# User Manager Defines what happens when a regular, and super user is created
 
 # City Model
 
