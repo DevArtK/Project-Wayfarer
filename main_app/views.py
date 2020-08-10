@@ -3,25 +3,12 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.generic import UpdateView
 from .models import UserProfile, City, Post
-from .forms import RegistrationForm, ProfileForm
+from .forms import RegistrationForm, ProfileForm, CityForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
-class City:
-    def __init__(self, name, location):
-        self.name = name
-        self.location = location
-
-
-City = [
-    City("Atlanta", "GA"),
-    City("Norwalk", "CT"),
-    City("Brooklyn", "NY"),
-]
-
 # ----- User Reg + User Profile
-
 
 class ProfilView(UpdateView):
     model = ProfileForm
@@ -43,24 +30,37 @@ def home(request):
 
 # ----- ABOUT Route -----
 def about(request):
-    return render(request, "about.html")
+    city_form = CityForm()
+    context = {
+
+        'city_form': CityForm,
+        'user': User
+    }
+    return render(request, "about.html", context)
+
+
+# ----- User profile Page -----
+# @login_required
+def user_profile(request):
+    return render(request, "user/detail.html")
+
 
 # ------ User Signup Route ------
 def signup(request):
-    error = None
-    form = RegistrationForm()
+    form = ProfileForm()
     context = {
         "form": form,
-        "error": error,
     }
     if request.method == "POST":
         # Create an instance of Form
-        profile_form = RegistrationForm(request.POST)  # !
-        form = RegistrationForm(request.POST)
+        form = ProfileForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.user = request.user
+            user.set_password(user.password)
+            user.save()
             login(request, user)
-            return redirect("/")
+            return redirect("/user/1")
         else:
             return render(
                 request,
@@ -73,9 +73,11 @@ def signup(request):
 
 # User Profile Route
 @login_required
-def user_detail(request, user_id):
-    user = User.objects.get(id=user_id)
+def user_detail(request):
+    user = request.user
+    form = ProfileForm()
     context = {
+        'form': form,
         'user': User,
 
     }
@@ -103,3 +105,45 @@ def post_detail(request, post_id):
     return render(request, 'post/detail.html', context)
 
 
+
+
+# Post Index Route
+def post_index(request):
+    return render(request, 'post/index.html')
+
+
+# Post edit route
+
+@login_required
+def post_edit(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        form = Form(request.POST, instance=post)
+    if form.is_valid():
+        post = form.save()
+        return redirect('detail', post.id)
+    else:
+        form = PostForm(instance=post)
+        return render(request, 'post/edit.html', {'form': form})
+
+
+@login_required
+def post_delete(request, post_id):
+
+    Post.objects.get(id=post_id).delete()
+    return redirect('index')
+
+
+# _____City Routes _______
+
+def city_index(request):
+    return render(request, 'city/index.html')
+
+def city_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    context = {
+    'name': name,
+    'image': image,
+    'posts': posts,
+    }
+    return render(request, 'city/detail.html', context)

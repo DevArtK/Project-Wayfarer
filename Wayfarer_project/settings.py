@@ -76,7 +76,7 @@ WSGI_APPLICATION = "Wayfarer_project.wsgi.application"
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {"ENGINE": "django.db.backends.postgresql", "NAME": "wayfarerGA", "USER": "brend", "PASSWORD": "as"},
+    "default": {"ENGINE": "django.db.backends.postgresql", "NAME": "wayfarerGA"},
 }
 
 
@@ -113,6 +113,5 @@ USE_TZ = True
 STATIC_URL = "/static/"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-LOGIN_REDIRECT_URL = "/user/detail"
+LOGIN_REDIRECT_URL = "/user/1"
 LOGOUT_REDIRECT_URL = "/"
-
