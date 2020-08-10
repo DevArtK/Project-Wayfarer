@@ -21,12 +21,25 @@
       <a href="#">Edit Posts</a>
       <a href="#">Edit Profile</a>
       <a href="#">Delete</a>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn" type="submit">Save</button>
+      </form>
 </tbody>
       <h2>Name</h2>
       <hr />
       <h4>Location</h4>
       <hr />
       <em>Date Joined</em>
+
+     
+      <h1>Edit Form</h1>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn" type="submit">Save</button>
+      </form>
     </div>
   </div>
 </body>

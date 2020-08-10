@@ -3,24 +3,12 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.generic import UpdateView
 from .models import UserProfile, City, Post
-from .forms import RegistrationForm, ProfileForm
+from .forms import RegistrationForm, ProfileForm, CityForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
-
-class City:
-    def __init__(self, name, location):
-        self.name = name
-        self.location = location
-
-
-City = [
-    City("Atlanta", "GA"),
-    City("Norwalk", "CT"),
-    City("Brooklyn", "NY"),
-]
 
 # ----- User Reg + User Profile
-
 
 class ProfilView(UpdateView):
     model = ProfileForm
@@ -41,10 +29,19 @@ def home(request):
 
 
 # ----- ABOUT Route -----
+def about(request):
+    city_form = CityForm()
+    context = {
+
+        'city_form': CityForm,
+        'user': User
+    }
+    return render(request, "about.html", context)
+
+# -------- Cities ---------------#
 def city(request):
     return render(request, "city.html")
 
-# -------- Cities ---------------#
 def boston(request):
     return render(request, "city/boston.html")
 
@@ -129,7 +126,6 @@ def user_profile(request):
     return render(request, "user/detail.html")
 
 
-
 # ------ User Signup Route ------
 def signup(request):
     form = ProfileForm()
@@ -157,8 +153,9 @@ def signup(request):
 
 
 # User Profile Route
-def user_detail(request, user_id):
-    user = User.objects.get(id=user_id)
+@login_required
+def user_detail(request):
+    user = request.user
     form = ProfileForm()
     context = {
         'form': form,
@@ -167,51 +164,67 @@ def user_detail(request, user_id):
     }
     return render(request, 'user/detail.html', context)
 
-# CITIES = (
-
-#     ('Austin, TX')
-#     'Jacksonville, FL'
-#     'Fort Worth, TX'
-#     'San Francisco, CA'
-#     'Columbus, OH'
-#     'Charlotte, NC'
-#     'Indianapolis, IN'
-#     'Seattle, WA'
-#     'Denver, CO'
-#     'Washington, DC'
-#     'El Paso, TX'
-#     'Boston, MA '
-#     'Nashville, TN '
-#     'Portland, OR'
-#     'Las Vegas, NV'
-#     'Detroit, MI'
-#     'Oklahoma City, TN'
-#     'Memphis, TN'
-#     'Louisville, KY'
-#     'Baltimore, MD'
-#     'Milwaukee, WI'
-#     'Albuquerque, NM'
-#     'Tucson, AZ'
-#     'Fresno, CA'
-#     'Sacramento, CA '
-#     'Mesa, AZ'
-#     'Atlanta, GA'
-#    'Kansas City,'
-#     'Colorado Springs,'
-#     'Miami, FL'
-#     'Raleigh, NC'
-#     'Long Beach, CA'
-#     'Virginia Beach, VA'
-#     'Omaha, NE'
-#     Oakland, CA
-#     'Minneapolis, MN'
-#     'Arlington, TX '
-#     'Tampa, FL'
-#     'Tulsa, OK'
-#     'New Orleans,'
-
-# )
+# User Profile edit
+@login_required
+def  user_edit(request, user_id):
+    user = User.objects.get(id=user_id)
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=user)
+        if form.is_valid():
+            user - form.save()
+            return redirect('user', user.id)
+    else:
+        form = UserForm(request.POST, instance=user)
+        return render(request, 'user/edit.html', {'form': form})
 
 
+def post_detail(request, post_id):
+    post = Post.objects.get(id=post_id)
+    context = {
+        'post' : post
+    }
+    return render(request, 'post/detail.html', context)
+
+
+
+
+# Post Index Route
 def post_index(request):
     return render(request, 'post/index.html')
+
+
+# Post edit route
+
+@login_required
+def post_edit(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        form = Form(request.POST, instance=post)
+    if form.is_valid():
+        post = form.save()
+        return redirect('detail', post.id)
+    else:
+        form = PostForm(instance=post)
+        return render(request, 'post/edit.html', {'form': form})
+
+
+@login_required
+def post_delete(request, post_id):
+
+    Post.objects.get(id=post_id).delete()
+    return redirect('index')
+
+
+# _____City Routes _______
+
+def city_index(request):
+    return render(request, 'city/index.html')
+
+def city_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    context = {
+    'name': name,
+    'image': image,
+    'posts': posts,
+    }
+    return render(request, 'city/detail.html', context)

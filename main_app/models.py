@@ -82,38 +82,68 @@ class UserProfile(models.Model):
 
 # City Model
 
+STATES = (
+    ('USA', 'USA'),
+    ('Alabama_Montgomery', 'Alabama, Montgomery'),
+    ('Alaska_Juneau', 'Alaska, Juneau'),
+    ('Arizona_Phoenix', 'Arizona, Phoenix'),
+    ('Arkansas_Little_Rock', 'Arkansas, Little Rock'),
+    ('California_Sacramento', 'California, Sacramento'),
+    ('Colorado_Denver', 'Colorado, Denver'),
+    ('Connecticut_Hartford', 'Connecticut, Hartford'),
+    ('Delaware_Dover', 'Delaware, Dover'),
+    ('Florida_Tallahassee', 'Florida, Tallahassee'),
+    ('Georgia_Atlanta', 'Georgia, Atlanta'),
+    ('Hawaii_Honolulu', 'Hawaii, Honolulu'),
+    ('Idaho_Boise', 'Idaho, Boise'),
+    ('Illinois_Springfield', 'Illinois, Springfield'),
+    ('Indiana_Indianapolis', 'Indiana, Indianapolis'),
+    ('Iowa_Des_Moines', 'Iowa, Des Moines'),
+    ('Kansas_Topeka', 'Kansas, Topeka'),
+    ('Kentucky_Frankfort', 'Kentucky, Frankfort'),
+    ('Louisiana_Baton_Rouge', 'Louisiana, Baton Rouge'),
+    ('Maine_Augusta', 'Maine, Augusta'),
+    ('Maryland_Annapolis', 'Maryland, Annapolis'),
+    ('Massachusetts_Boston', 'Massachusetts, Boston'),
+    ('Michigan_Lansing', 'Michigan, Lansing'),
+    ('Minnesota_St_Paul', 'Minnesota, St. Paul'),
+    ('Mississippi_Jackson', 'Mississippi, Jackson'),
+    ('Missouri_Jefferson_City', 'Missouri, Jefferson City'),
+    ('Montana_Helena', 'Montana, Helena'),
+    ('Nebraska_Lincoln', 'Nebraska, Lincoln'),
+    ('Nevada_Carson_City', 'Nevada, Carson City'),
+    ('New_Hampshire_Concord', 'New Hampshire, Concord'),
+    ('New_Jersey_Trenton', 'New Jersey, Trenton'),
+    ('New_Mexico_Santa_Fe', 'New Mexico, Santa Fe'),
+    ('New_York_Albany', 'New York, Albany'),
+    ('North_Carolina_Raleigh', 'North Carolina, Raleigh'),
+    ('North_Dakota_Bismarck', 'North Dakota, Bismarck'),
+    ('Ohio_Columbus', 'Ohio, Columbus'),
+    ('Oklahoma_Oklahoma_City_Oklahoma', 'Oklahoma City'),
+    ('Oregon_Salem_Portland_Oregon', 'Salem Portland'),
+    ('Pennsylvania_Harrisburg', 'Pennsylvania, Harrisburg'),
+    ('Rhode_Island_Providence', 'Rhode Island, Providence'),
+    ('South_Carolina_Columbia', 'South Carolina, Columbia'),
+    ('South_Dakota_Pierre', 'South Dakota, Pierre'),
+    ('Tennessee_Nashville', 'Tennessee, Nashville'),
+    ('Texas_Austin', 'Texas, Austin'),
+    ('Utah_Salt_Lake_City', 'Utah, Salt Lake City'),
+    ('Vermont_Montpelier', 'Vermont, Montpelier'),
+    ('Virginia_Richmond', 'Virginia, Richmond'),
+    ('Washington_Olympia', 'Washington, Olympia'),
+    ('West_Virginia_Charleston', 'West Virginia, Charleston'),
+    ('Wisconsin_Madison', 'Wisconsin, Madison'),
+    ('Wyoming_Cheyenne', 'Wyoming, Cheyenne'),
+)
+
 
 class City(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="https://picsum.photos/200/300")
-
-
-# Django model username, email, password, first_name, and last_name
-# User Model
-# class custom_user(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     locaton = models.CharField(max_length=40)
-#     email = models.EmailField(("email address"), unique=True)
-#     first_name = models.CharField(("first name"), max_length=30, blank=True)
-#     last_name = models.CharField(("last name"), max_length=30, blank=True)
-#     date_joined = models.DateTimeField(("date joined"), auto_now_add=True)
-#     is_active = models.BooleanField(("active"), default=True)
-#     date_created = models.DateTimeField()
-#     # photos = models.ImageField(upload_to="images/user_photos")
-
-#     def __str__(self):
-#         return f"{self.email}, {self.username}, {self.first_name}"
-
-#     @receiver(post_save, sender=User)
-#     def create_user_profile(sender, instance, created, **kwargs):
-#         if created:
-#             Profile.objects.create(user=instance)
-
-#     @receiver(post_save, sender=User)
-#     def save_user_profile(sender, instance, **kwargs):
-#         instance.profile.save()
+    city = models.CharField(
+        'Current Location', max_length=40, choices=STATES, default=STATES[0])
+    image = models.ImageField(upload_to="images/")
 
 
 class Post(models.Model):

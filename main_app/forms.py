@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from .models import UserProfile
+from .models import UserProfile, City, Post
 from django.contrib.auth.models import User
 
 
@@ -14,7 +14,7 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
-        qs = User.objects.filter(email=email)
+        qs = UserProfile.objects.filter(email=email)
         if qs.exists():
             raise forms.ValidationError("email is taken")
         return email
@@ -28,8 +28,8 @@ class RegistrationForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
-        User = super().save(commit=False)
-        User.set_password(self.cleaned_data["password"])
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password"])
         if commit:
             User.save()
         return User
@@ -72,3 +72,15 @@ class UserChangeForm(forms.ModelForm):
 
     def clean_password(self):
         return self.initial["password"]
+
+
+class CityForm(forms.ModelForm):
+    class Meta:
+        model = City
+        fields = ['city']
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['user', 'title', 'body', 'city']
+
