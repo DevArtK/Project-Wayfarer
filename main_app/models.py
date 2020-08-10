@@ -87,7 +87,7 @@ class City(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # image = models.ImageField(upload_to="images/")#
+    image = models.ImageField(upload_to="https://picsum.photos/200/300")
 
 
 # Django model username, email, password, first_name, and last_name

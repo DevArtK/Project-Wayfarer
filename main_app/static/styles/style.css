@@ -35,6 +35,10 @@ html body #in {
   box-shadow: 4px 17px 28px 0px rgba(0, 0, 0, 0.75);
 }
 
+.remove{
+  list-style: none;
+}
+
 .black-text {
   color: black;
 }
