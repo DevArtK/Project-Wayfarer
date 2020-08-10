@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import Group
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from .models import UserProfile, City
+from .models import UserProfile, City, Post
 from django.contrib.auth.models import User
 
 
