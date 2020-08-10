@@ -67,11 +67,11 @@ class UserProfile(models.Model):
     @receiver(post_save, sender=User)
     def create_user_profile(self, sender, instance, created, **kwargs):
         if created:
-            User.objects.create(user=instance).save()
+            UserProfile.objects.create(user=instance).save()
 
     @receiver(post_save, sender=User)
     def save_user_profile(self, sender, instance, **kwargs):
-        instance.User.save()
+        instance.userprofile.save()
 
     def __str__(self):
         return self.User.username
