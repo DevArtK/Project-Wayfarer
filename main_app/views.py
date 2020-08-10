@@ -107,7 +107,7 @@ def post_detail(request, post_id):
 
 # Post edit route
 @login_required
-def edit_post(request, post_id):
+def post_edit(request, post_id):
   post = Post.objects.get(id=post_id)
   if request.method == 'POST':
     form = Form(request.POST, instance=post)
