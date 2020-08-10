@@ -141,7 +141,7 @@ def signup(request):
             user.set_password(user.password)
             user.save()
             login(request, user)
-            return redirect("/user/1")
+            return redirect("user/detail")
         else:
             return render(
                 request,
@@ -153,7 +153,7 @@ def signup(request):
 
 
 # User Profile Route
-@login_required
+
 def user_detail(request):
     user = request.user
     form = ProfileForm()
@@ -194,7 +194,6 @@ def post_index(request):
 
 
 # Post edit route
-
 @login_required
 def post_edit(request, post_id):
     post = Post.objects.get(id=post_id)
@@ -207,6 +206,26 @@ def post_edit(request, post_id):
         form = PostForm(instance=post)
         return render(request, 'post/edit.html', {'form': form})
 
+
+@login_required
+def post_add(request):
+    if request.method == 'POST':
+        user = request.user.user_id
+        title = request.POST['title']
+        body = request.POST['body']
+        city = request.POST['city_id']
+
+        form = PostForm(request.POST)
+        new_post = form.save(commit=False)
+        # Associate User and Cat
+        new_post.user = request.user
+        # Save new Cat in DB
+        new_post.save()
+
+        return redirect('detail', new_post.id)
+    else:
+        form = PostForm()
+        return render(request, 'post/new.html', {'form': form})
 
 @login_required
 def post_delete(request, post_id):
