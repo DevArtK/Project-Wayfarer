@@ -1,0 +1,1 @@
+web: gunicorn Project-Wayfarer.wsgi --log-file -

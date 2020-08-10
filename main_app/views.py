@@ -72,7 +72,7 @@ def signup(request):
 
 
 # User Profile Route
-@login_required
+
 def user_detail(request):
     user = request.user
     form = ProfileForm()
@@ -118,8 +118,8 @@ def post_edit(request, post_id):
     post = Post.objects.get(id=post_id)
     if request.method == 'POST':
         form = Form(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save()
+    if form.is_valid():
+        post = form.save()
         return redirect('detail', post.id)
     else:
         form = PostForm(instance=post)
