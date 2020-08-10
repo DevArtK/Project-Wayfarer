@@ -136,9 +136,7 @@ def post_add(request):
 
     form = PostForm(request.POST)
     new_post = form.save(commit=False)
-    # Associate User and Cat
     new_post.user = request.user
-    # Save new Cat in DB
     new_post.save()
 
     return redirect('detail', new_post.id)
